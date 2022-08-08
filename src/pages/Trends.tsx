@@ -3,12 +3,17 @@ import { ArrowBackIcon } from '@chakra-ui/icons'
 import { useNavigate } from "react-router-dom"
 
 import { useFetchTrendMoviesQuery } from "../features/apiData/apiData.slice"
+
+import LoadingSpinner from "../components/Spinner"
 const Trends = () => {
 
     const {data, isLoading, isError} = useFetchTrendMoviesQuery()
     
     const navigate = useNavigate()
     
+    if(isLoading){
+        return <LoadingSpinner/>
+    }
 
     return (
         <Container

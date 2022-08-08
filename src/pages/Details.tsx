@@ -1,12 +1,20 @@
 import { ArrowBackIcon, StarIcon } from "@chakra-ui/icons"
 import { Button, Container, Flex, Image, Stack, Text } from "@chakra-ui/react"
 import { useParams, useNavigate } from "react-router-dom"
+
+import LoadingSpinner from "../components/Spinner"
 import { useFetchMovieDetailQuery, useFetchRecommendedMoviesQuery } from "../features/apiData/apiData.slice"
+
 const Details = () => {
     const {id} = useParams()
     const navigate = useNavigate()
     const {data, isLoading, isError} = useFetchMovieDetailQuery(id)
     const response = useFetchRecommendedMoviesQuery(id)
+
+    if(isLoading){
+        return <LoadingSpinner/>
+    }
+
     return (
         <Container
             position='relative'

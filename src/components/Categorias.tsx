@@ -1,10 +1,22 @@
-import { Button, Flex, Stack, Text } from "@chakra-ui/react"
+import { Button, Flex, Spinner, Stack, Text } from "@chakra-ui/react"
 import { useNavigate } from "react-router-dom"
 
 import { useFetchCategoriesQuery } from "../features/apiData/apiData.slice"
+
+
 const Categorias = () => {
     const {data, isLoading, isError} = useFetchCategoriesQuery()
+
     const navigate = useNavigate()
+
+    if(isLoading){
+        return (
+            <Stack maxW='600px' h='300px' align='center' justify='center'>
+                <Spinner/>
+            </Stack>
+        )
+    }
+
     return (
         <Stack>
             <Text

@@ -1,13 +1,23 @@
 import { useNavigate } from "react-router-dom"
 
 import { useFetchTrendMoviesQuery } from "../features/apiData/apiData.slice"
-import { Button, Image, Stack, Text } from "@chakra-ui/react"
+import { Button, Image, Spinner, Stack, Text } from "@chakra-ui/react"
 
 const Tendencias = () => {
 
     const {data, isLoading, isError} = useFetchTrendMoviesQuery()
 
+
     const navigate = useNavigate()
+
+    if(isLoading){
+        return (
+            <Stack maxW='600px' h='300px' align='center' justify='center'>
+                <Spinner/>
+            </Stack>
+        )
+    }
+
     return (
         <Stack marginBottom='45px'>
             <Stack 

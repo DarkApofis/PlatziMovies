@@ -1,7 +1,8 @@
 import { ArrowBackIcon } from "@chakra-ui/icons"
-import { Button, Container, Flex, Image, Stack, Text } from "@chakra-ui/react"
+import { Button, Container, Flex, Image, Spinner, Stack, Text } from "@chakra-ui/react"
 import { useParams, useNavigate } from "react-router-dom"
 
+import LoadingSpinner from "../components/Spinner"
 import { useFetchMovieByCategoryQuery } from "../features/apiData/apiData.slice"
 
 const Category = () => {
@@ -17,12 +18,17 @@ const Category = () => {
     }
 
     const {data, isLoading, isError} = useFetchMovieByCategoryQuery(idNumber)
+
+    if(isLoading){
+        return <LoadingSpinner/>
+    }
+
     return (
         <Container
-        p='2.2rem 1.5rem' 
-        minW='375px' 
-        maxW='600px' 
-        width='100%'
+            p='2.2rem 1.5rem' 
+            minW='375px' 
+            maxW='600px' 
+            width='100%'
     > 
         <ArrowBackIcon
             w='38px' 

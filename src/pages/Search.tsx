@@ -2,6 +2,7 @@ import { ArrowBackIcon, SearchIcon } from "@chakra-ui/icons"
 import { Container, Flex, IconButton, Image, Input, InputGroup, InputRightElement } from "@chakra-ui/react"
 import { useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
+import LoadingSpinner from "../components/Spinner"
 import { useFetchSearchMovieQuery } from "../features/apiData/apiData.slice"
 
 const Search = () => {
@@ -17,6 +18,10 @@ const Search = () => {
       if(search.length >= 1){
         navigate(`/search?movie_name=${search}`)
       }
+    }
+
+    if(isLoading){
+        return <LoadingSpinner/>
     }
 
     return (
